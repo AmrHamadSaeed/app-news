@@ -2,6 +2,7 @@ import 'package:app_news/api/api_manager.dart';
 import 'package:app_news/model/NewsResponse.dart';
 import 'package:app_news/model/SourceResponse.dart';
 import 'package:app_news/my_theme.dart';
+import 'package:app_news/news/news_item.dart';
 import 'package:flutter/material.dart';
 
 class NewsWidget extends StatefulWidget {
@@ -16,8 +17,8 @@ class NewsWidget extends StatefulWidget {
 class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<NewsResponse>(
-        future: ApiManager.getNewsBySourceId(widget.source.id ?? ''),
+    return FutureBuilder<NewsResponse?>(
+        future: ApiManager.getNewsBySourceId(widget.source.id ?? '' ,searchWords: widget.source.name ?? ''),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -31,7 +32,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                 Text('Something went wrong '),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.getNewsBySourceId(widget.source.id ?? '');
+                      ApiManager.getNewsBySourceId(widget.source.id ?? '',searchWords: widget.source.name ?? '');
                       setState(() {});
                     },
                     child: Text('Try Again'))
@@ -46,7 +47,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                 Text(snapshot.data!.message!),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.getNewsBySourceId(widget.source.id ?? '');
+                      ApiManager.getNewsBySourceId(widget.source.id ?? '',searchWords: widget.source.name ?? '');
                       setState(() {});
                     },
                     child: Text('Try Again'))
@@ -56,7 +57,7 @@ class _NewsWidgetState extends State<NewsWidget> {
           var newsList = snapshot.data?.articles ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Text(newsList[index].title ?? '');
+              return NewsItem(news: newsList[index]);
             },
             itemCount: newsList.length,
           );

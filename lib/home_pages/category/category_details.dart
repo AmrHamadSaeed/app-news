@@ -2,6 +2,7 @@
 import 'package:app_news/api/api_manager.dart';
 
 import 'package:app_news/model/SourceResponse.dart';
+import 'package:app_news/model/category_home.dart';
 import 'package:app_news/my_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,10 @@ import 'future_tabs/tab_home_widget.dart';
 
 class CategoryDetails extends StatefulWidget {
 static const String routeName = 'category-details';
+CategoryDataModel categoryDM;
+CategoryDetails({
+  required this.categoryDM
+});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -17,24 +22,8 @@ static const String routeName = 'category-details';
 class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          color: MyTheme.whiteColor,
-          child:Image.asset('assets/images/pattern.png',
-            width: double.infinity,
-            height: double.infinity,
-          fit: BoxFit.cover,) ,
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            title: Text(
-              'News App',style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ),
-          body: FutureBuilder<SourceResponse?>(
-              future: ApiManager.getSources(),
+    return  FutureBuilder<SourceResponse?>(
+              future: ApiManager.getSources(widget.categoryDM.id),
               builder: (context , snapshot){
                 /// handle future loading data
                 if (snapshot.connectionState == ConnectionState.waiting){
@@ -49,7 +38,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     children: [
                       Text('Something went wrong '),
                       ElevatedButton(onPressed: (){
-                        ApiManager.getSources();
+                        ApiManager.getSources(widget.categoryDM.id);
                         setState(() {
 
                         });
@@ -63,7 +52,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     children: [
                       Text(snapshot.data!.message!),
                       ElevatedButton(onPressed: (){
-                        ApiManager.getSources();
+                        ApiManager.getSources(widget.categoryDM.id);
                         setState(() {
 
                         });
@@ -74,9 +63,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 var sourcesList = snapshot.data?.sources ?? [] ;
                 return TabHomeWidget(sourcesList: sourcesList);
               }
-          ),
-        ),
-      ],
+
     );
   }
 }
