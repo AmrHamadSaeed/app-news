@@ -2,10 +2,10 @@ import 'package:app_news/model/SourceResponse.dart';
 import 'package:app_news/my_theme.dart';
 import 'package:flutter/material.dart';
 
-class TabItem extends StatelessWidget {
+class DesignTabHome extends StatelessWidget {
   bool isSelected ;
   Source source;
-  TabItem({required this.source,required this.isSelected});
+  DesignTabHome({required this.source,required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
