@@ -21,21 +21,15 @@ class NewsItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, NewsItemDetails.routeName,arguments: news);
-                print('heloo');
-              },
-              child: CachedNetworkImage(
-                imageUrl: news.urlToImage ?? '',
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height*0.30,
-                fit: BoxFit.fill,
-                placeholder: (context, url) => Center(child: CircularProgressIndicator(
-                  backgroundColor: MyTheme.primaryLightColor,
-                )),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+            child: CachedNetworkImage(
+              imageUrl: news.urlToImage ?? '',
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height*0.30,
+              fit: BoxFit.fill,
+              placeholder: (context, url) => Center(child: CircularProgressIndicator(
+                backgroundColor: MyTheme.primaryLightColor,
+              )),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
           SizedBox(

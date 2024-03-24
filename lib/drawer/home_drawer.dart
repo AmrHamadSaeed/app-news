@@ -1,5 +1,6 @@
 import 'package:app_news/my_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeDrawer extends StatelessWidget {
 static const int categories = 1;
@@ -16,9 +17,11 @@ static const int settings = 2;
             vertical: MediaQuery.of(context).size.height*0.10
           ),
           color: MyTheme.primaryLightColor,
-          child: Text('News App!',
+          child: Text(
+            AppLocalizations.of(context)!.news_app,
             style: Theme.of(context).textTheme.titleLarge,
-            textAlign: TextAlign.center,),
+            textAlign: TextAlign.center,
+          ),
         ),
 
         Padding(
@@ -31,7 +34,8 @@ static const int settings = 2;
               children: [
                 Icon(Icons.list),
                 SizedBox(width: 10,),
-                Text('Categories',
+                Text(
+                  AppLocalizations.of(context)!.categories,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
@@ -48,7 +52,8 @@ static const int settings = 2;
               children: [
                 Icon(Icons.settings),
                 SizedBox(width: 10,),
-                Text('Settings',
+                Text(
+                  AppLocalizations.of(context)!.settings,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],

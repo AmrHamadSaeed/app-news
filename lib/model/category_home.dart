@@ -1,5 +1,6 @@
 import 'package:app_news/my_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryDataModel {
   String id;
@@ -13,7 +14,7 @@ class CategoryDataModel {
       required this.id,
       required this.imagePath});
 
-  static List<CategoryDataModel> getCategories() {
+  static List<CategoryDataModel> getCategories(BuildContext context) {
     /*
     business entertainment general
     health science sports technology
@@ -21,32 +22,32 @@ class CategoryDataModel {
     return [
       CategoryDataModel(
           color: MyTheme.redColor,
-          title: 'Sports',
+          title: AppLocalizations.of(context)!.sports,
           id: 'sports',
           imagePath: 'assets/images/ball.png'),
       CategoryDataModel(
           color: MyTheme.brownColor,
-          title: 'Business',
+          title: AppLocalizations.of(context)!.business,
           id: 'business',
           imagePath: 'assets/images/bussines.png'),
       CategoryDataModel(
           color: MyTheme.pinkColor,
-          title: 'Health',
+          title: AppLocalizations.of(context)!.health,
           id: 'health',
           imagePath: 'assets/images/health.png'),
       CategoryDataModel(
           color: MyTheme.blueColor,
-          title: 'Entertainment',
+          title: AppLocalizations.of(context)!.entertainment,
           id: 'entertainment',
           imagePath: 'assets/images/environment.png'),
       CategoryDataModel(
           color: MyTheme.yellowColor,
-          title: 'Science',
+          title: AppLocalizations.of(context)!.science,
           id: 'science',
           imagePath: 'assets/images/science.png'),
       CategoryDataModel(
           color: MyTheme.darkBlueColor,
-          title: 'Technology',
+          title: AppLocalizations.of(context)!.technology,
           id: 'technology',
           imagePath: 'assets/images/Politics.png'),
 
