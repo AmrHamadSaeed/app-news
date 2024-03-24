@@ -22,7 +22,7 @@ class CategoryDataModel {
     return [
       CategoryDataModel(
           color: MyTheme.redColor,
-          title: AppLocalizations.of(context)!.language,
+          title: AppLocalizations.of(context)!.sports,
           id: 'sports',
           imagePath: 'assets/images/ball.png'),
       CategoryDataModel(

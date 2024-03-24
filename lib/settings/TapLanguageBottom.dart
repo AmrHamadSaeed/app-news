@@ -1,3 +1,4 @@
+import 'package:app_news/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class _TapLanguageBottomState extends State<TapLanguageBottom> {
           child: InkWell(
             onTap: () {
               provider.changeLanguage('en');
+              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
             },
             child: provider.languageApp == 'en'
                 ? selectedItem(AppLocalizations.of(context)!.english)
@@ -32,6 +34,7 @@ class _TapLanguageBottomState extends State<TapLanguageBottom> {
           child: InkWell(
             onTap: () {
               provider.changeLanguage('ar');
+              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
             },
             child: provider.languageApp == 'ar'
                 ? selectedItem(AppLocalizations.of(context)!.arabic)
@@ -49,8 +52,8 @@ class _TapLanguageBottomState extends State<TapLanguageBottom> {
         Text(
           text,
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: MyTheme.blackColor,
-              ),
+            color: MyTheme.blackColor,
+          ),
         ),
         Icon(Icons.check),
       ],
@@ -61,8 +64,8 @@ class _TapLanguageBottomState extends State<TapLanguageBottom> {
     return Text(
       text,
       style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            color: MyTheme.blackColor,
-          ),
+        color: MyTheme.blackColor,
+      ),
     );
   }
 }

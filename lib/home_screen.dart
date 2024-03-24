@@ -67,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
               title: (!searchBoolean)
                   ? Text(
                       selectedMenuItem == HomeDrawer.settings
-                          ? 'Settings'
+                          ? AppLocalizations.of(context)!.settings
                           : selectedCategory == null
-                              ? 'News App'
+                              ? AppLocalizations.of(context)!.app_title
                               : selectedCategory?.title ?? '',
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

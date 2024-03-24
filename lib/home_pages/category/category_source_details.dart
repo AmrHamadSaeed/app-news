@@ -1,6 +1,5 @@
 
 import 'package:app_news/api/api_manager.dart';
-
 import 'package:app_news/model/SourceResponse.dart';
 import 'package:app_news/model/category_home.dart';
 import 'package:app_news/my_theme.dart';
@@ -25,18 +24,21 @@ class _CategorySourceDetailsState extends State<CategorySourceDetails> {
   @override
   Widget build(BuildContext context) {
     return  FutureBuilder<SourceResponse?>(
-              future: ApiManager.getSources(widget.categoryDM.id),
-              builder: (context , snapshot){
-                /// handle future loading data
-                if (snapshot.connectionState == ConnectionState.waiting){
-                  return Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: MyTheme.primaryLightColor,
-                    ),
-                  );
-                  /// handel user network disable => catch Api getSources (throw e)
-                }else if (snapshot.hasError){
-                  return Column(
+              future: ApiManager.getSources(
+          widget.categoryDM.id,
+        ),
+        builder: (context, snapshot) {
+          /// handle future loading data
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(
+                backgroundColor: MyTheme.primaryLightColor,
+              ),
+            );
+
+            /// handel user network disable => catch Api getSources (throw e)
+          } else if (snapshot.hasError) {
+            return Column(
                     children: [
                       Text('Something went wrong '),
                       ElevatedButton(onPressed: (){

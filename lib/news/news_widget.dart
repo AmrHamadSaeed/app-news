@@ -19,7 +19,10 @@ class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<NewsResponse?>(
-        future: ApiManager.getNewsBySourceId(widget.source.id ?? '' , widget.searchKey ?? ''),
+        future: ApiManager.getNewsBySourceId(
+          widget.source.id ?? '',
+          widget.searchKey ?? '',
+        ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
