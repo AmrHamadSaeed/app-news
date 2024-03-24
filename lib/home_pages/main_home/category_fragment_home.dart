@@ -1,4 +1,4 @@
-import 'package:app_news/home_pages/category/category_item.dart';
+import 'package:app_news/home_pages/main_home/category_item.dart';
 import 'package:app_news/model/category_home.dart';
 import 'package:flutter/material.dart';
 

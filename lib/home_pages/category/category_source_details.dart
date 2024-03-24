@@ -6,20 +6,22 @@ import 'package:app_news/model/category_home.dart';
 import 'package:app_news/my_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'future_tabs/tab_home_widget.dart';
+import 'tab_home_widget.dart';
 
-class CategoryDetails extends StatefulWidget {
+class CategorySourceDetails extends StatefulWidget {
 static const String routeName = 'category-details';
 CategoryDataModel categoryDM;
-CategoryDetails({
-  required this.categoryDM
+String searchKey;
+CategorySourceDetails({
+  required this.categoryDM,
+  required this.searchKey
 });
 
   @override
-  State<CategoryDetails> createState() => _CategoryDetailsState();
+  State<CategorySourceDetails> createState() => _CategorySourceDetailsState();
 }
 
-class _CategoryDetailsState extends State<CategoryDetails> {
+class _CategorySourceDetailsState extends State<CategorySourceDetails> {
   @override
   Widget build(BuildContext context) {
     return  FutureBuilder<SourceResponse?>(
@@ -61,7 +63,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   );
                 }
                 var sourcesList = snapshot.data?.sources ?? [] ;
-                return TabHomeWidget(sourcesList: sourcesList);
+                return TabHomeWidget(sourcesList: sourcesList, searchKey: widget.searchKey,);
               }
 
     );

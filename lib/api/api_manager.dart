@@ -29,11 +29,11 @@ static Future<SourceResponse?> getSources(String categoryId)async{
 * https://newsapi.org/v2/everything?apiKey=2834e41a6cd94fb484f8df821c7606fd
 * */
 static Future<NewsResponse> getNewsBySourceId(String sourceId ,
-    { String searchWords = ''}) async{
+    String searchKey ) async{
  Uri url = Uri.https(ApiConstants.baseUrlServer,ApiConstants.NewsApiServer,{
    'apiKey' : '2834e41a6cd94fb484f8df821c7606fd',
    'sources' : sourceId,
-   'q' : searchWords
+   'q' : searchKey
  });
  try{
    var response = await http.get(url);
