@@ -2,10 +2,10 @@ import 'package:app_news/drawer/home_drawer.dart';
 import 'package:app_news/home_pages/category/category_source_details.dart';
 import 'package:app_news/home_pages/main_home/category_fragment_home.dart';
 import 'package:app_news/model/category_home.dart';
-
 import 'package:app_news/my_theme.dart';
 import 'package:app_news/settings/settings_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';
@@ -15,10 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _searchBoolean = false;
+  bool searchBoolean = false;
   String searchWord = '';
 
-  Widget _searchTextField() {
+  Widget searchTextField() {
     //add
     return Container(
       height: 40,
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(40),
             borderSide: BorderSide(color: Colors.white, width: 1),
           ),
-          hintText: 'Search Article',
+          hintText: AppLocalizations.of(context)!.search,
           hintStyle: Theme.of(context)
               .textTheme
               .titleSmall!
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-              title: (!_searchBoolean)
+              title: (!searchBoolean)
                   ? Text(
                       selectedMenuItem == HomeDrawer.settings
                           ? 'Settings'
@@ -74,9 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     )
-                  : _searchTextField(),
+                  : searchTextField(),
               centerTitle: true,
-              actions: !_searchBoolean
+              actions: !searchBoolean
                   ? [
                       !categoryIsSelected
                           ? Container()
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               icon: Icon(Icons.search),
                               onPressed: () {
                                 setState(() {
-                                  _searchBoolean = true;
+                                  searchBoolean = true;
                                 });
                               })
                     ]
@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           icon: Icon(Icons.clear),
                           onPressed: () {
                             setState(() {
-                              _searchBoolean = false;
+                              searchBoolean = false;
                             });
                           })
                     ]),
