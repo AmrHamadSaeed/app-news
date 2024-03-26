@@ -11,6 +11,9 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    DateTime publishedAtDate = DateTime.parse(news.publishedAt ?? '');
+    Duration diff = now.difference(publishedAtDate);
     return Container(
       padding: EdgeInsets.all(12),
       child: Column(
@@ -50,7 +53,7 @@ class NewsItem extends StatelessWidget {
             height: 10,
           ),
           Text(
-            news.publishedAt ?? "",
+            '${diff.inHours} hours ago' ?? "",
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   color: MyTheme.greyColor,
                 ),
