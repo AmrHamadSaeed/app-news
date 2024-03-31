@@ -19,19 +19,12 @@ static const String routeName = 'category-details';
 CategoryDataModel categoryDM;
 String searchKey;
 
-// late SourceRepositoryContract repositoryContract;
-// late SourceRemoteDataSource remoteDataSource;
-// late ApiManager apiManager;
 
 CategorySourceDetails({
   required this.categoryDM,
   required this.searchKey,
 });
-// {
-//   apiManager = ApiManager();
-//   repositoryContract = SourceRepositoryImpl(remoteDataSource: remoteDataSource);
-//   remoteDataSource = SourceRemoteDataSourceImp(apiManager: apiManager);
-// }
+
 
   @override
   State<CategorySourceDetails> createState() => _CategorySourceDetailsState();
@@ -62,7 +55,6 @@ class _CategorySourceDetailsState extends State<CategorySourceDetails> {
               ElevatedButton(
                   onPressed: (){
                viewModel.getSources(widget.categoryDM.id);
-
               }, child: Text('Try Again'))
             ],
           );
@@ -78,56 +70,56 @@ class _CategorySourceDetailsState extends State<CategorySourceDetails> {
 
 
 
-      FutureBuilder<SourceResponse?>(
-              future: ApiManager.getSources(
-          widget.categoryDM.id,
-        ),
-        builder: (context, snapshot) {
-          /// handle future loading data
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(
-                backgroundColor: MyTheme.primaryLightColor,
-              ),
-            );
-
-            /// handel user network disable => catch Api getSources (throw e)
-          } else if (snapshot.hasError) {
-            return Column(
-                    children: [
-                      Text('Something went wrong '),
-                      ElevatedButton(onPressed: (){
-                        ApiManager.getSources(
-                          widget.categoryDM.id,
-                        );
-                        setState(() {
-
-                        });
-                      }, child: Text('Try Again'))
-                    ],
-                  );
-                }
-                /// server ( success   == error)
-                if (snapshot.data?.status != 'ok'){
-                  return Column(
-                    children: [
-                      Text(snapshot.data!.message!),
-                      ElevatedButton(onPressed: (){
-                        ApiManager.getSources(
-                          widget.categoryDM.id,
-                        );
-                        setState(() {
-
-                        });
-                      }, child: Text('Try Again'))
-                    ],
-                  );
-                }
-                var sourcesList = snapshot.data?.sources ?? [] ;
-                return TabHomeWidget(sourcesList: sourcesList, searchKey: widget.searchKey,);
-              }
-
-    );
+    //   FutureBuilder<SourceResponse?>(
+    //           future: ApiManager.getSources(
+    //       widget.categoryDM.id,
+    //     ),
+    //     builder: (context, snapshot) {
+    //       /// handle future loading data
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+    //         return Center(
+    //           child: CircularProgressIndicator(
+    //             backgroundColor: MyTheme.primaryLightColor,
+    //           ),
+    //         );
+    //
+    //         /// handel user network disable => catch Api getSources (throw e)
+    //       } else if (snapshot.hasError) {
+    //         return Column(
+    //                 children: [
+    //                   Text('Something went wrong '),
+    //                   ElevatedButton(onPressed: (){
+    //                     ApiManager.getSources(
+    //                       widget.categoryDM.id,
+    //                     );
+    //                     setState(() {
+    //
+    //                     });
+    //                   }, child: Text('Try Again'))
+    //                 ],
+    //               );
+    //             }
+    //             /// server ( success   == error)
+    //             if (snapshot.data?.status != 'ok'){
+    //               return Column(
+    //                 children: [
+    //                   Text(snapshot.data!.message!),
+    //                   ElevatedButton(onPressed: (){
+    //                     ApiManager.getSources(
+    //                       widget.categoryDM.id,
+    //                     );
+    //                     setState(() {
+    //
+    //                     });
+    //                   }, child: Text('Try Again'))
+    //                 ],
+    //               );
+    //             }
+    //             var sourcesList = snapshot.data?.sources ?? [] ;
+    //             return TabHomeWidget(sourcesList: sourcesList, searchKey: widget.searchKey,);
+    //           }
+    //
+    // );
   }
 }
 /*

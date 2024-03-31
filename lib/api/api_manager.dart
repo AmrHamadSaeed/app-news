@@ -11,7 +11,7 @@ class ApiManager {
 * 2834e41a6cd94fb484f8df821c7606fd
 */
 
-  static Future<SourceResponse?> getSources(
+   Future<SourceResponse?> getSources(
     String categoryId,
   ) async {
     Uri url =

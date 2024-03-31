@@ -14,7 +14,7 @@ class NewsWidgetViewModel extends Cubit<NewsWidgetStates>{
         return;
       }
       if(response.status == 'ok'){
-        emit(NewsSuccessState(newsList: response.articles!));
+        emit(NewsSuccessState(newsList: response.articles!,query: searchKey));
         return;
       }
 

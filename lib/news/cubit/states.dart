@@ -10,6 +10,12 @@ class NewsErrorState extends NewsWidgetStates{
   NewsErrorState({required this.errorMessage});
 }
 class NewsSuccessState extends NewsWidgetStates{
+  String query;
   List<News> newsList = [];
-  NewsSuccessState({required this.newsList});
+  NewsSuccessState({required this.newsList,required this.query});
+}
+class SearchState extends NewsWidgetStates{
+  String query;
+
+  SearchState({required this.query});
 }
